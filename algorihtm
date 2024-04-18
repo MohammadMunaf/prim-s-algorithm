@@ -1,0 +1,24 @@
+	 typedef pair<int,int>p;
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        // code here
+        int sum=0;
+        priority_queue<p,vector<p>,greater<p>>pq;
+        vector<bool>inMst(V,false);
+        pq.push({0,0});
+        while(!pq.empty()){
+            auto k=pq.top();
+            pq.pop();
+            int node=k.second;
+            int wt=k.first;
+            if(inMst[node]) continue;
+            inMst[node]=true;
+            sum+=wt;
+            for(auto nbr:adj[node]){
+                if(!inMst[nbr[0]]){
+                    pq.push({nbr[1],nbr[0]});
+                }
+            }
+        }
+        return sum;
+    }
