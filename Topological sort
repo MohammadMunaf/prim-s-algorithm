@@ -1,0 +1,57 @@
+//DFS
+class Solution
+{
+    stack<int>st;
+    void dfs(vector<int> adj[],int u,vector<bool>&visited){
+        visited[u]=true;
+        for(auto&v:adj[u]){
+            if(!visited[v])  dfs(adj,v,visited);
+        }
+        st.push(u);
+    }
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    vector<bool>visited(V,false);
+	    vector<int>ans;
+	    for(int i=0;i<V;i++){
+	        if(!visited[i]) dfs(adj,i,visited);
+	    }
+	    while(!st.empty()){
+	        ans.push_back(st.top());
+	        st.pop();
+	    }
+	    return ans;
+	}
+};
+
+Bsf or khan's algorithm
+class Solution
+{
+    stack<int>st;
+    void dfs(vector<int> adj[],int u,vector<bool>&visited){
+        visited[u]=true;
+        for(auto&v:adj[u]){
+            if(!visited[v])  dfs(adj,v,visited);
+        }
+        st.push(u);
+    }
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    vector<bool>visited(V,false);
+	    vector<int>ans;
+	    for(int i=0;i<V;i++){
+	        if(!visited[i]) dfs(adj,i,visited);
+	    }
+	    while(!st.empty()){
+	        ans.push_back(st.top());
+	        st.pop();
+	    }
+	    return ans;
+	}
+};
